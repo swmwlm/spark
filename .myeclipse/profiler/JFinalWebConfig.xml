@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="profiler.settings.instrument.empty.methods">true</entry>
+<entry key="ProfilerCPUSettings_profile_runnables">true</entry>
+<entry key="ProfilerCPUSettings_filter_type">2</entry>
+<entry key="ProfilerMemorySettings_track_every">10</entry>
+<entry key="ProfilerMemorySettings_mode">4</entry>
+<entry key="ProfilerCPUSettings_root_classes">cn.yyljlyy.db.**
+com.jfinal.aop.**
+com.jfinal.config.**
+com.jfinal.core.**
+com.jfinal.ext.handler.**
+com.jfinal.ext.interceptor.**
+com.jfinal.ext.kit.**
+com.jfinal.ext.plugin.shiro.**
+com.jfinal.ext.render.**
+com.jfinal.handler.**
+com.jfinal.i18n.**
+com.jfinal.kit.**
+com.jfinal.log.**
+com.jfinal.plugin.**
+com.jfinal.render.**
+com.jfinal.server.**
+com.jfinal.token.**
+com.jfinal.upload.**
+com.jfinal.validate.**
+com.yyljlyy.api.base.**
+com.yyljlyy.api.common.**
+com.yyljlyy.api.ryz.controller.**
+com.yyljlyy.api.ryz.model.**
+com.yyljlyy.api.ryz.validator.**
+com.yyljlyy.base.**
+com.yyljlyy.common.**
+com.yyljlyy.sys.controller.**
+com.yyljlyy.sys.model.**
+com.yyljlyy.wms.common.**
+com.yyljlyy.wms.controller.**
+com.yyljlyy.wms.model.**
+util.**
+</entry>
+<entry key="ProfilerCPUSettings_filter_value">cn.yyljlyy.db.*,
+com.jfinal.aop.*,
+com.jfinal.config.*,
+com.jfinal.core.*,
+com.jfinal.ext.handler.*,
+com.jfinal.ext.interceptor.*,
+com.jfinal.ext.kit.*,
+com.jfinal.ext.plugin.shiro.*,
+com.jfinal.ext.render.*,
+com.jfinal.handler.*,
+com.jfinal.i18n.*,
+com.jfinal.kit.*,
+com.jfinal.log.*,
+com.jfinal.plugin.*,
+com.jfinal.render.*,
+com.jfinal.server.*,
+com.jfinal.token.*,
+com.jfinal.upload.*,
+com.jfinal.validate.*,
+com.yyljlyy.api.base.*,
+com.yyljlyy.api.common.*,
+com.yyljlyy.api.ryz.controller.*,
+com.yyljlyy.api.ryz.model.*,
+com.yyljlyy.api.ryz.validator.*,
+com.yyljlyy.base.*,
+com.yyljlyy.common.*,
+com.yyljlyy.sys.controller.*,
+com.yyljlyy.sys.model.*,
+com.yyljlyy.wms.common.*,
+com.yyljlyy.wms.controller.*,
+com.yyljlyy.wms.model.*,
+util.*</entry>
+<entry key="profiler.settings.istrument.getter.setter.methods">true</entry>
+<entry key="myeclipse.profiling.mode">0</entry>
+<entry key="ProfilerMemorySettings_stacktraces">-1</entry>
+</properties>

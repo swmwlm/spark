@@ -1,0 +1,22 @@
+package com.yyljlyy.api.ryz.validator;
+
+import static com.yyljlyy.api.common.APIResponse.*;
+
+import com.jfinal.core.Controller;
+import com.yyljlyy.base.BaseValidator;
+
+
+public class UsernamePassowrdValidator extends BaseValidator {
+
+	@Override
+	protected void validate(Controller c) {
+		validateRequired("username", "u_message", "登录用户名不能为空");
+		validateRequired("password", "p_message", "密码不能为空");
+	}
+
+	@Override
+	protected void handleError(Controller c) {
+		toAPIResponse(c, RESPONSE_CODE_ERROR_UserReqParamError, "username and passowrd can not null", null);
+	}
+
+}

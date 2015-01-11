@@ -1,0 +1,31 @@
+<base href="${CONTEXT_PATH}/" />
+<form id="pagerForm" action="gencode/dblistpage" onsubmit="return navTabSearch(this)" method="post">
+   	<input type="hidden" name="pager.pageNumber" value="${(pager.pageNumber)!}" /><!--【必须】value=1可以写死-->
+   	<input type="hidden" name="pager.pageSize" value="${(pager.pageSize)!}" /><!--【可选】每页显示多少条-->
+	<!--【可选】其它查询条件，业务有关，有什么查询条件就加什么参数。
+   		也可以在searchForm上设置属性rel=”pagerForm”，js框架会自动把searchForm搜索条件复制到pagerForm中 -->
+</form>
+<div class="pageContent" style="height:500px;weith:500px;padding:0px">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" target="dialog"  width="500" height="250"  href="wms/storage_bin/add"><span>新增</span></a></li>
+			<li class="line">line</li>
+			<li><a class="edit" href="{sid_obj}" width="500" height="250" target="dialog"><span>修改</span></a></li>
+			<li class="line">line</li>
+			<li><a class="delete" href="delete"  target="selectedTodo" rel="ids"  title="确认删除？"><span>删除</span></a></li>
+		</ul>
+	</div>
+	
+	<table class="table" layoutH="77">
+		<thead>
+			<tr>
+				<#list dblist.list as list>
+	            	<th>${(list.COLUMN_COMMENT)!}</th>
+				</#list>
+			</tr>
+		</thead>
+		<tbody>
+			
+		</tbody>
+	</table>
+</div>

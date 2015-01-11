@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>肖云计算管理系统</title>
+<script src="static/js/jquery-1.4.4.js" type="text/javascript" ></script>
+<link rel="stylesheet" type="text/css" href="static/css/register.css"/>
+<script type="text/javascript" src="static/js/sys/login.js"></script>
+
+<script type="text/javascript">
+
+$(function(){
+
+    $('.rem').click(function(){
+        $(this).toggleClass('selected');
+    })
+
+    $('#signup_select').click(function(){
+        $('.form_row ul').show();
+        event.cancelBubble = true;
+    })
+
+    $('#d').click(function(){
+        $('.form_row ul').toggle();
+        event.cancelBubble = true;
+    })
+
+    $('body').click(function(){
+        $('.form_row ul').hide();
+    })
+
+    $('.form_row li').click(function(){
+        var v  = $(this).text();
+        $('#signup_select').val(v);
+        $('.form_row ul').hide();
+    })
+})
+</script>
+</head>
+<body>
+<h1 class='logo_title'>肖云计算管理系统</h1>
+<div class='signup_container'>
+
+    <h1 class='signup_title'>系统用户登录</h1>
+    <div id="signup_forms" class="signup_forms clearfix">
+            <form class="signup_form_form" action="main" method="post" id="loginForm">
+                    <div class="form_row first_row">
+                        <label class="control-label" for="username">请输入用户名</label><div class='tip ok'></div>
+                        <input name="userinfo.username" type="text" class="login_box_main_ul_td_input" placeholder="请输入用户名" id="username" data-required="required">
+                    </div>
+                    <div class="form_row">
+                        <label class="control-label" for="password">请输入密码</label><div class='tip ok'></div>
+                        <input class="login_box_main_ul_td_input" type="password" name="userinfo.pwd" placeholder="请输入密码" id="password" data-required="required">
+                    </div>
+           </form>
+    </div>
+
+    <div class="login-btn-set"><div class='rem'>记住我</div> <button type="submit" class="login-btn" onclick="jQuery.loginSubmit();" id="loginSubmit" url="validateLogin"></button></div>
+    <p class='copyright'>版权所有 剑影科技</p>
+</div>
+
+</body>
+</html>

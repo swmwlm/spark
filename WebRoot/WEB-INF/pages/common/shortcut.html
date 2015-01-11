@@ -1,0 +1,186 @@
+<base href="${CONTEXT_PATH}/" />
+<script type="text/javascript">
+	title = "October Browser Statistics";
+	titleXpos = 390;
+	titleYpos = 85;
+
+	/* Pie Data */
+	pieRadius = 60;
+	pieXpos = 850;
+	pieYpos = 80;
+	pieData = [1149422, 551315, 172095, 166565, 53329, 18060, 8074, 1941, 1393, 1104, 2110];
+	pieLegend = [
+	             "%%.%% – 微博统计", 
+	             "%%.%% – 人人网统计", 
+	             "%%.%% – 知乎统计", 
+	             "%%.%% – QQ统计", 
+	             "%%.%% – 微信统计", 
+	             "%%.%% – 陌陌统计", 
+	             "%%.%% – 朋友圈统计", 
+	             "%%.%% – 易信统计", 
+	             "%%.%% – 腾讯微博统计", 
+	             "%%.%% – 旺信统计", 
+	             "%%.%% – 其他统计"];
+	pieLegendPos = "east";
+	             
+	var options = {
+    	stacked: false,
+    	gutter:20,
+		axis: "0 0 1 1", // Where to put the labels (trbl)
+		axisystep: 5 // How many x interval labels to render (axisystep does the same for the y axis)
+	};
+    var options2 = {
+    		stacked: false,
+        	gutter:20,
+    		axis: "0 0 1 1", // Where to put the labels (trbl)
+    		axisxstep: 11, // How many x interval labels to render (axisystep does the same for the y axis)
+    		axisxlables: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    		axisystep: 15,
+    		shade:false, // true, false
+    		smooth:false, //曲线
+    		symbol:"circle"
+    	};
+	
+	$(function() {
+        // Creates canvas
+        var r = Raphael("chartHolder");
+        var data = [[10,20,30,50],[20,40,60,100]];
+        
+        // stacked: false
+		var chart1 = r.barchart(40, 10, 320, 150, data, options).hover(function() {
+            this.flag = r.popup(this.bar.x, this.bar.y, this.bar.value).insertBefore(this);
+        }, function() {
+            this.flag.animate({opacity: 0}, 500, ">", function () {this.remove();});
+        });
+		chart1.label([["A1",  "A2", "A3", "A4"],["B1",  "B2", "B3", "B4"]],true);
+		
+		
+		// stacked: true
+		options.stacked=true;
+		
+		var chart2 = r.barchart(400, 10, 320, 150, data, options).hoverColumn(function() {
+    		var y = [], res = [];
+            for (var i = this.bars.length; i--;) {
+                y.push(this.bars[i].y);
+                res.push(this.bars[i].value || "0");
+            }
+            this.flag = r.popup(this.bars[0].x, Math.min.apply(Math, y), res.join(", ")).insertBefore(this);
+        }, function() {
+            this.flag.animate({opacity: 0}, 500, ">", function () {this.remove();});
+        });
+		chart2.label([["A"],["B"],["C"],["D"]],true);
+		
+		var pie = r.piechart(pieXpos, pieYpos, pieRadius, pieData, {legend: pieLegend, legendpos: pieLegendPos});
+		pie.hover(function () {
+			this.sector.stop();
+			this.sector.scale(1.1, 1.1, this.cx, this.cy);
+			if (this.label) {
+				this.label[0].stop();
+				this.label[0].attr({ r: 7.5 });
+				this.label[1].attr({"font-weight": 800});
+			}
+		}, function () {
+			this.sector.animate({ transform: 's1 1 ' + this.cx + ' ' + this.cy }, 500, "bounce");
+			if (this.label) {
+				this.label[0].animate({ r: 5 }, 500, "bounce");
+				this.label[1].attr({"font-weight": 400});
+			}
+		});
+		
+		var lines = r.linechart(
+				20, // X start in pixels
+				150, // Y start in pixels
+				1000, // Width of chart in pixels
+				250, // Height of chart in pixels
+				[.5,1.5,2,2.5,3,3.5,4,4.5,5], // Array of x coordinates equal in length to ycoords
+				[7,11,9,13,3,17,18,17,19], // Array of y coordinates equal in length to xcoords
+				options2 // opts object
+			);
+		var xText = lines.axis[0].text.items;		
+		for(var i in xText){ // Iterate through the array of dom elems, the current dom elem will be i
+			var _oldLabel = (xText[i].attr('text') + "").split('.'), // Get the current dom elem in the loop, and split it on the decimal
+				_newLabel = _oldLabel[0] + ":" + (_oldLabel[1] == undefined ? '00' : '30'); // Format the result into time strings
+			xText[i].attr({'text': _newLabel}); // Set the text of the current elem with the result
+		};
+	});
+</script>
+<div class="pageContent" minH=”100” style="width:100%;height:100%;padding:0px;margin-top:30px;margin-left:10px">
+	<fieldset style="//margin-top:30px">
+		<legend>快捷功能</legend>
+    	<ul class="warp_box_ul">
+    		<li ></li>
+			<li ></li>
+			<li class="ico_main_bg_green"><a href="wms/systemer/run" rel="wms_run" target="navTab">系统启动</a></li>
+			<li ></li>
+			<li ></li>
+			<li class="ico_main_bg_gray"><a href="wms/systemer/stop" rel="wms_stopo" target="navTab">系统关闭</a></li>
+			<li ></li>
+			<li ></li>
+			<li class="ico_main_bg_orange">系统重启</li>
+			<li ></li>
+			<li ></li>
+			<li class="ico_main_bg_blue"><a href="wms/systemer/run" rel="wms_form_mio" target="navTab">软件初始化</a></li>
+			</ul>
+    </fieldset>
+    <fieldset style="height:450px;width:100%;">
+		<legend>报表展示</legend>
+    		<div id="chartHolder"style="height:420px;"></div>
+    </fieldset>
+	<fieldset style="//margin-top:30px">
+		<legend>基础设置</legend>
+    	<ul class="warp_box_ul">
+    		<li ></li>
+			<li ></li>
+			<li class="ico_main_bg_blue"><a href="http://192.168.8.88:50070" target="navTab"  rel="wms_storage">Hadoop配置</a></li>
+			<li ></li>
+			<li ></li>
+			<li class="ico_main_bg_blue"><a href="wms/storage_bin" target="navTab" rel="wms_storage_bin">Spark配置</a></li>
+			<li ></li>
+			<li ></li>
+			<li class="ico_main_bg_blue"><a href="wms/material" target="navTab" rel="wms_material">Spark配置</a></li>
+			<li ></li>
+			<li ></li>
+			<li class="ico_main_bg_blue"><a href="wms/customer" target="navTab" rel="wms_customer">Spark配置</a></li>
+    		<li ></li>
+			<li ></li>
+			<li class="ico_main_bg_blue"><a href="wms/employe" target="navTab" rel="wms_employe">Spark配置</a></li>
+			<li ></li>
+			<li ></li>
+			<li class="ico_main_bg_blue"><a href="wms/employe" target="navTab" rel="wms_employe">Spark配置</a></li>
+		</ul>
+		<ul class="warp_box_ul">
+			<li ></li>
+			<li ></li>
+			<li class="ico_main_bg_blue"><a href="wms/customer" target="navTab" rel="wms_customer">Spark配置</a></li>
+    		<li ></li>
+			<li ></li>
+			<li class="ico_main_bg_blue"><a href="wms/employe" target="navTab" rel="wms_employe">Spark配置</a></li>
+			<li ></li>
+			<li ></li>
+			<li class="ico_main_bg_blue"><a href="wms/employe" target="navTab" rel="wms_employe">Spark配置</a></li>
+			<li ></li>
+			<li ></li>
+			<li class="ico_main_bg_blue"><a href="wms/customer" target="navTab" rel="wms_customer">Spark配置</a></li>
+    		<li ></li>
+			<li ></li>
+			<li class="ico_main_bg_blue"><a href="wms/employe" target="navTab" rel="wms_employe">Spark配置</a></li>
+			<li ></li>
+			<li ></li>
+			<li class="ico_main_bg_blue"><a href="wms/employe" target="navTab" rel="wms_employe">Spark配置</a></li>
+		</ul>
+    </fieldset>
+    <!-- 
+    <fieldset style="//margin-top:30px">
+		<legend>Debug Console</legend>
+    	<ul class="warp_box_ul">
+    		<li ></li>
+			<li ></li>
+			<li class="ico_main_bg_blue"><a href="console" target="navTab" rel="debug_console" external="true" title="Debug Console">Debug Console</a></li>
+			<li ></li>
+			<li ></li>
+			<li ></li>
+			<li ></li>
+		</ul>
+    </fieldset>
+     -->
+</div>
